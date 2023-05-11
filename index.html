@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Churrasco</title>
+
+</head>
+
+
+
+
+<body>
+
+<h2>Churrasco</h2>
+<form id="churrascoForm">
+<label for="adultosComAlcool">Adultos (que consomem bebidas alcoólicas):</label>
+<input type="number" id="adultosComAlcool" required><br>
+<label for="adultosSemAlcool">Adultos (que não consomem bebidas alcoólicas):</label>
+<input type="number" id="adultosSemAlcool" required><br>
+<label for="criancas">Crianças:</label>
+<input type="number" id="criancas" required><br>
+<button type="submit">Calcular</button>
+</form>
+
+<h3>Resultado:</h3>
+<p id="resultado"></p>
+
+
+
+<script>
+const churrascoForm = document.getElementById('churrascoForm');
+const resultadoElement = document.getElementById('resultado');
+
+churrascoForm.addEventListener('submit', function (event) {
+
+event.preventDefault();
+
+
+
+
+const adultosComAlcool = parseInt(document.getElementById('adultosComAlcool').value);
+const adultosSemAlcool = parseInt(document.getElementById('adultosSemAlcool').value);
+const criancas = parseInt(document.getElementById('criancas').value);
+
+
+const adultos = adultosComAlcool + adultosSemAlcool;
+const pessoas = adultos + criancas;
+
+
+
+
+const carne = 0.4 * adultos + 0.2 * criancas;
+const acompanhamentos = 0.2 * pessoas;
+const cerveja = 2 * adultosComAlcool;
+const refrigerante = 0.5 * (adultosSemAlcool + criancas);
+const agua = 0.4 * pessoas;
+
+
+const resultadoText = `
+Carne: ${carne.toFixed(1)} Kg<br>
+Acompanhamentos: ${acompanhamentos.toFixed(1)} Kg<br>
+Cerveja: ${cerveja.toFixed(1)} L<br>
+Refrigerante: ${refrigerante.toFixed(1)} L<br>
+Água: ${agua.toFixed(1)} L
+`;
+
+
+
+resultadoElement.innerHTML = resultadoText;
+});
+</script>
